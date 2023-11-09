@@ -1,4 +1,4 @@
-const { searchByName } = require("../controllers/searchCtrl");
+const searchByName = require("../controllers/searchCtrl");
 
 const searchHandler = async (req, res) => {
   const { name } = req.query;

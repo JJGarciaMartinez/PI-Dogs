@@ -6,7 +6,7 @@ const searchByName = async (name) => {
     const { data } = await axios.get(`${URL_API}/breeds/search?q=${name}`);
     return data;
   } catch (error) {
-    throw error;
+    return error;
   }
 };
 

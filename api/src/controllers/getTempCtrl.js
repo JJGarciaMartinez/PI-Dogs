@@ -1,14 +1,13 @@
 const axios = require("axios");
 const { Temperament } = require("../db");
-const { API_KEY } = process.env;
 const URL_API = "https://api.thedogapi.com/v1";
 
 const getTempCtrl = async () => {
   try {
-    const url = `${URL_API}/breeds?api_key=${API_KEY}`;
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(`${URL_API}/breeds`);
 
     let temperaments = [];
+
     data.foreach((breed) => {
       if (breed.temperaments) {
         const temp = breed.temperament.split(",");

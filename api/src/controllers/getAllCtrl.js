@@ -28,7 +28,7 @@ const getAllByApi = async () => {
 
     return dogs;
   } catch (error) {
-    throw error;
+    return error;
   }
 };
 
@@ -40,7 +40,7 @@ const getAllByDb = async () => {
     });
     return dbDogs;
   } catch (error) {
-    throw error;
+    return error;
   }
 };
 

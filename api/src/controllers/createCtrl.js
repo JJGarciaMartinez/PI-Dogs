@@ -22,7 +22,7 @@ const createNewDog = async (req, res) => {
     }
     return newDog;
   } catch (error) {
-    throw error;
+    return res.status(400).json({ error: error.message });
   }
 };
 
