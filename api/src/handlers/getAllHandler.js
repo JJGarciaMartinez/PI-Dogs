@@ -1,9 +1,9 @@
-const { getAllByApi, getAllByBdd } = require("../controllers/getAllCtrl");
+const { getAllByApi, getAllByDb } = require("../controllers/getAllCtrl");
 
 const getDogsHandler = async (req, res) => {
   try {
     const fromApi = await getAllByApi();
-    const fromDb = await getAllByBdd();
+    const fromDb = await getAllByDb();
     if (!fromApi || !fromDb) {
       return res.status(400).json({ error: "Faltan datos obligatorios" });
     }
