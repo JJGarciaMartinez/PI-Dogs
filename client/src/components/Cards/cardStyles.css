@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  animation-timing-function: ease;
+}
+
+.container {
+  margin-top: 7rem;
+
+  .search {
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+  }
+}
+
+.cardsContainer {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
+.card {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 35rem;
+  height: 15rem;
+  border-radius: 0 10px;
+  background-color: #f0f0f0;
+  color: rgb(21, 21, 31);
+  border-top: 5px solid rgb(21, 21, 31);
+  border-right: 5px solid rgb(21, 21, 31);
+  transition: 0.3s ease-in-out;
+
+  & figure {
+    width: 350px;
+    height: 100%;
+    box-shadow: 7px 0px 15px -5px rgb(21, 21, 31, 0.75);
+    border-radius: 0 0 0 10px;
+    z-index: 2;
+    overflow: hidden;
+
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+  }
+  & section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding-left: 2rem;
+
+    & .name {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    & .temperaments {
+      font-weight: normal;
+      font-size: 1rem;
+    }
+
+    & .weight {
+      font-weight: normal;
+      font-size: 0.8rem;
+    }
+
+    & .btn {
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #8f0707;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: #ff1e00;
+      }
+    }
+  }
+}
