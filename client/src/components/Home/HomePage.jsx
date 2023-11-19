@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getDogs, tempFilter } from "../../redux/actions";
+import { getDogs, getTemperaments } from "../../redux/actions";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import Cards from "../Cards/Cards";
+
+import "./Home.css";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(getDogs());
-      dispatch(tempFilter(""));
+      dispatch(getTemperaments());
       setLoading(false);
     };
 
@@ -19,6 +21,9 @@ export default function HomePage() {
   }, [dispatch]);
 
   return (
-    <div className="homePage">{loading ? <LoadingPage /> : <Cards />}</div>
+    <div className="homePage">
+      {loading ? <LoadingPage /> : <Cards />}
+      <figure className="background"></figure>
+    </div>
   );
 }

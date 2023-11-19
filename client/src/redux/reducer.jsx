@@ -12,51 +12,53 @@ const initialState = {
   dogs: [],
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState, actions) => {
+  switch (actions.type) {
     case GET_DOGS: {
       return {
         ...state,
-        allDogs: action.payload,
-        dogs: action.payload,
+        allDogs: actions.payload,
+        dogs: actions.payload,
       };
     }
     case GET_TEMPERAMENTS: {
       return {
         ...state,
-        temperament: action.payload,
+        temperament: actions.payload,
       };
     }
     case POST_DOG: {
       return {
         ...state,
-        dogs: [...state.dogs, action.payload],
+        dogs: actions.payload,
       };
     }
     case TEMP_FILTER: {
+      const selTemp = actions.payload;
+      const filteredDogs = state.allDogs.filter((dog) =>
+        dog.temperament.includes(selTemp)
+      );
       return {
         ...state,
-        dogs: state.allDogs.filter((dog) =>
-          dog.temperament?.includes(action.payload)
-        ),
+        dogs: filteredDogs,
       };
     }
     case ORIGIN_FILTER:
       {
-        if (action.payload === "all") {
+        if (actions.payload === "all") {
           return {
             ...state,
             dogs: state.allDogs,
           };
         }
-        if (action.payload === "db") {
+        if (actions.payload === "db") {
           const filteredDogs = state.allDogs.filter((dog) => dog.inDb);
           return {
             ...state,
             dogs: filteredDogs,
           };
         }
-        if (action.payload === "api") {
+        if (actions.payload === "api") {
           const filteredDogs = state.allDogs.filter((dog) => !dog.inDb);
           return {
             ...state,

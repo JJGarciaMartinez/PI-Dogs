@@ -11,29 +11,29 @@ export default function NavBar() {
   return (
     <>
       <div className="nav">
-        <figure className="logo">
+        <figure className="logo-nav">
           <img src={Dog} alt="logo" /> DOGS
         </figure>
 
         <section className="links">
           <NavLink to="/home">
             <span>
+              <p>Home</p>
               <img src={House} alt="home" />
-              Home
             </span>
           </NavLink>
 
           <NavLink to="/newDog">
             <span>
+              <p>Create Dog</p>
               <img src={Add} alt="add" />
-              Create
             </span>
           </NavLink>
 
           <NavLink to="/">
             <span>
+              <p>Exit</p>
               <img src={SingOut} alt="exit" />
-              Exit
             </span>
           </NavLink>
         </section>

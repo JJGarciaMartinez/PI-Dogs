@@ -6,12 +6,15 @@ export default function SearchBar({ searchTerm, onSearch }) {
   };
 
   return (
-    <input
-      type="text"
-      placeholder="Search"
-      value={searchTerm}
-      onChange={handleInputChange}
-      className="search"
-    />
+    <>
+      <label htmlFor="search">Search: </label>
+      <input
+        type="text"
+        placeholder="Search by name..."
+        value={searchTerm}
+        onChange={handleInputChange}
+        className="search"
+      />
+    </>
   );
 }

@@ -5,9 +5,16 @@ import HomePage from "./components/Home/HomePage";
 import Nav from "./components/NavBar/NavBar";
 import Detail from "./components/Detail/Detail";
 import CreateDog from "./components/Form/CreateDog";
+import { useDispatch } from "react-redux";
+import { getTemperaments } from "./redux/actions";
+import { useEffect } from "react";
 
 function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
   return (
     <>
       <div>{location.pathname !== "/" && <Nav />}</div>
