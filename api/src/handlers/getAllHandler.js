@@ -14,4 +14,4 @@ const getDogsHandler = async (req, res) => {
   }
 };
 
-module.exports = getDogsHandler;
+module.exports = { getDogsHandler };

@@ -4,22 +4,20 @@ const URL_API = "https://api.thedogapi.com/v1";
 
 const getTempCtrl = async () => {
   try {
-    const { data } = await axios.get(`${URL_API}/breeds`);
-
+    const { data } = await axios(`${URL_API}/breeds`);
     let temperaments = [];
-
-    data.foreach((breed) => {
-      if (breed.temperaments) {
-        const temp = breed.temperament.split(",");
-        temp.foreach((t) => {
-          if (!temperaments.includes(t)) {
-            temperaments.push(t);
+    data.forEach((breed) => {
+      if (breed.temperament) {
+        const temperamentos = breed.temperament.split(", ");
+        temperamentos.forEach((temperamento) => {
+          if (!temperaments.includes(temperamento)) {
+            temperaments.push(temperamento);
           }
         });
       }
     });
 
-    const newTemp = await Promise.all(
+    const tempsBd = await Promise.all(
       temperaments.map(async (temperament) => {
         const [temp, created] = await Temperament.findOrCreate({
           where: { name: temperament },
@@ -28,7 +26,7 @@ const getTempCtrl = async () => {
         return temp;
       })
     );
-    return newTemp;
+    return tempsBd;
   } catch (error) {
     return error;
   }

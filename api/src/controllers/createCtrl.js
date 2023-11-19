@@ -1,28 +1,29 @@
 const { Dog, Temperament } = require("../db.js");
+const { conn } = require("../db.js");
 
-const createNewDog = async (req, res) => {
+const createNewDog = async (dogData) => {
   try {
-    const { name, image, altura, peso, life_span } = await dogData;
-    if (!name || !image || !altura || !peso || !life_span) {
-      return res.status(400).json({ error: "Faltan datos obligatorios" });
+    const { name, image, altura, peso, lifespan } = await dogData;
+    if (!name || !image || !altura || !peso || !lifespan) {
+      throw new Error("Faltan datos obligatorios");
     }
     const newDog = await Dog.create({
       image,
       name,
       altura,
       peso,
-      life_span,
+      lifespan,
       inDb: true,
     });
     if (dogData.temperaments && dogData.temperaments.length > 0) {
-      const temps = await Temperament.findAll({
+      const temperaments = await Temperament.findAll({
         where: { name: dogData.temperaments },
       });
-      await newDog.setTemperaments(temps);
+      await newDog.setTemperaments(temperaments);
     }
     return newDog;
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    throw new Error(error);
   }
 };
 

@@ -21,8 +21,8 @@ const getAllByApi = async () => {
         image: `${URL_IMG}/images/${idImg}.jpg`,
         altura: breed.height,
         peso: breed.weight,
-        life_span: breed.life_span,
-        temperaments: breed.temperament ? breed.temperament.split(", ") : [],
+        lifespan: breed.life_span,
+        temperament: breed.temperament ? breed.temperament.split(", ") : [],
       };
     });
 

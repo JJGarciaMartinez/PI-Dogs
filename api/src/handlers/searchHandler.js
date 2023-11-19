@@ -10,4 +10,4 @@ const searchHandler = async (req, res) => {
   }
 };
 
-module.exports = searchHandler;
+module.exports = { searchHandler };

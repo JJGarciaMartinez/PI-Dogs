@@ -10,4 +10,4 @@ const detailsHandler = async (req, res) => {
   }
 };
 
-module.exports = detailsHandler;
+module.exports = { detailsHandler };

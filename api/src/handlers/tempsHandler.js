@@ -9,4 +9,4 @@ const getTempsHandler = async (req, res) => {
   }
 };
 
-module.exports = getTempsHandler;
+module.exports = { getTempsHandler };
