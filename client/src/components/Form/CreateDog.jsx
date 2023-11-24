@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { postDog } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import caretLeft from "../../assets/caret-left.svg";
+import broom from "../../assets/broom.svg";
+import pawPrint from "../../assets/paw-print.svg";
 import "./formStyles.css";
+import Footer from "../Footer/Footer";
 
 export default function CreateDog() {
   const dispatch = useDispatch();
@@ -133,8 +137,8 @@ export default function CreateDog() {
       .then(() => {
         setSuccess("Dog has been successfully created.");
         setTimeout(() => {
-          navigate("/home");
-        }, 1600);
+          window.scrollTo(0, 0);
+        }, 1000);
       })
       .catch((error) => {
         setError("Something went wrong. Please try again.");
@@ -144,104 +148,162 @@ export default function CreateDog() {
 
   return (
     <div className="createDog-container">
-      <NavLink to="/home">Back</NavLink>
+      <span className="createDog-header">
+        <NavLink to="/home" className="back-btn">
+          <img src={caretLeft} alt="" /> <p>Back</p>
+        </NavLink>
+        <h1>Create a new dog</h1>
+      </span>
 
-      <span>
-        <h1 className="title">Create new Dog</h1>
+      <span className="success-message">
         {success && <p className="success">{success}</p>}
       </span>
 
       <form action="" className="form" onSubmit={handleSubmit}>
-        {/*  NAME  */}
-        <label htmlFor="">Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={handleInputChange}
-          placeholder="Name"
-        />
-        <span>
-          {error && form.name === "" && <p>{error} </p>}
-          {error && form.name.length > 20 && <p>{error} </p>}
+        <div className="labels-container">
+          {/*  NAME  */}
+          <label className="name">
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleInputChange}
+              placeholder="Name"
+            />
+            <p>Name</p>
+            <span>
+              {error && form.name === "" && <p>{error}* </p>}
+              {error && form.name.length > 20 && <p>{error}* </p>}
+            </span>
+          </label>
+          {/*  IMAGE  */}
+          <label className="image">
+            <input
+              type="text"
+              name="image"
+              value={form.image}
+              onChange={handleInputChange}
+              placeholder="Image URL"
+            />
+            <p>
+              Image <li>(URL)</li>
+            </p>
+            <span>{error && form.image === "" && <p>{error}* </p>}</span>
+          </label>
+
+          {/*  HEIGHT  */}
+          <label className="minHeight">
+            <input
+              type="number"
+              name="minHeight"
+              value={form.minHeight}
+              onChange={handleInputChange}
+              min={1}
+              placeholder="Min Height"
+            />
+            <p>Min Height</p>
+            <span>{minHeightErr && <p>{minHeightErr}*</p>}</span>
+          </label>
+          <label className="maxHeight">
+            <input
+              type="number"
+              name="maxHeight"
+              value={form.maxHeight}
+              onChange={handleInputChange}
+              min={1}
+              placeholder="Max Height"
+            />
+            <p>Max Height</p>
+            <span>{maxHeightErr && <p>{maxHeightErr}*</p>}</span>
+          </label>
+
+          {/*  WEIGHT  */}
+          <label className="minWeight">
+            <input
+              type="number"
+              name="minWeight"
+              value={form.minWeight}
+              onChange={handleInputChange}
+              min={1}
+              placeholder="Min Weight"
+            />
+            <p>Min Weight</p>
+            <span>{minWeightErr && <p>{minWeightErr}*</p>}</span>
+          </label>
+          <label className="maxWeight">
+            <input
+              type="number"
+              name="maxWeight"
+              value={form.maxWeight}
+              onChange={handleInputChange}
+              min={1}
+              placeholder="Max Weight"
+            />
+            <p>Max Weight</p>
+            <span>{maxWeightErr && <p>{maxWeightErr}*</p>}</span>
+          </label>
+
+          <section className="lifeSpan">
+            {/*  LIFE SPAN  */}
+            <label className="lifeSpan">
+              <input
+                type="number"
+                name="lifeSpan"
+                value={form.lifeSpan}
+                onChange={handleInputChange}
+                min={1}
+                placeholder="Life Span"
+              />
+              <p>Life Span</p>
+              <span>{error && isNaN(form.lifeSpan) && <p>{error}* </p>}</span>
+            </label>
+          </section>
+
+          {/*  TEMPERAMENTS  */}
+          <section className="temperaments">
+            <label>
+              Temperaments:
+              <select
+                multiple
+                value={form.temperament}
+                onChange={handleTempChange}
+              >
+                {temperaments.map((temperament) => (
+                  <option key={temperament.UUID} value={temperament.name}>
+                    {temperament.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </section>
+        </div>
+
+        <span className="temperament-show">
+          <ul>
+            {form.temperament.map((temperament, index) => (
+              <li key={index}>{temperament},</li>
+            ))}
+          </ul>
         </span>
-        {/*  IMAGE  */}
-        <label htmlFor="">Image:</label>
-        <input
-          type="text"
-          name="image"
-          value={form.image}
-          onChange={handleInputChange}
-          placeholder="Image URL"
-        />
-        <span>{error && form.image === "" && <p>{error} </p>}</span>
-        {/*  HEIGHT  */}
-        <label htmlFor="">Min Height:</label>
-        <input
-          type="number"
-          name="minHeight"
-          value={form.minHeight}
-          onChange={handleInputChange}
-          min={1}
-          placeholder="Min Height"
-        />{" "}
-        cm
-        <span>{minHeightErr && <p>{minHeightErr}</p>}</span>
-        <label htmlFor="">Max Height:</label>
-        <input
-          type="number"
-          name="maxHeight"
-          value={form.maxHeight}
-          onChange={handleInputChange}
-          min={1}
-          placeholder="Max Height"
-        />
-        cm
-        <span>{maxHeightErr && <p>{maxHeightErr}</p>}</span>
-        {/*  WEIGHT  */}
-        <label htmlFor="">Min Weight:</label>
-        <input
-          type="number"
-          name="minWeight"
-          value={form.minWeight}
-          onChange={handleInputChange}
-          min={1}
-          placeholder="Min Weight"
-        />
-        <span>{minWeightErr && <p>{minWeightErr}</p>}</span>
-        <label htmlFor="">Max Weight:</label>
-        <input
-          type="number"
-          name="maxWeight"
-          value={form.maxWeight}
-          onChange={handleInputChange}
-          min={1}
-          placeholder="Max Weight"
-        />
-        <span>{maxWeightErr && <p>{maxWeightErr}</p>}</span>
-        {/*  LIFE SPAN  */}
-        <label htmlFor="">Life Span:</label>
-        <input
-          type="number"
-          name="lifeSpan"
-          value={form.lifeSpan}
-          onChange={handleInputChange}
-          min={1}
-          placeholder="Life Span"
-        />{" "}
-        years
-        <span>{error && isNaN(form.lifeSpan) && <p>{error} </p>}</span>
-        {/*  TEMPERAMENTS  */}
-        <label htmlFor="">Temperaments:</label>
-        <select multiple value={form.temperament} onChange={handleTempChange}>
-          {temperaments.map((temperament) => (
-            <option key={temperament.UUID} value={temperament.name}>
-              {temperament.name}
-            </option>
-          ))}
-        </select>
-        <button type="submit">Create new Dog</button>
+        <span className="temperaments-delete">
+          {form.temperament.length > 0 && (
+            <button onClick={() => setForm({ ...form, temperament: [] })}>
+              <img src={broom} alt="" />
+              <p>Remove Selection</p>
+            </button>
+          )}
+        </span>
+        <button type="submit" className="submit-btn">
+          <img src={pawPrint} alt="" />
+          <p>Create new Dog</p>
+        </button>
+        {error && (
+          <p className="error-btn">There are one or more unfilled fields*</p>
+        )}
       </form>
+      <figure className="background"></figure>
+
+      <Footer />
     </div>
   );
 }

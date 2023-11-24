@@ -17,7 +17,9 @@ function App() {
   }, [dispatch]);
   return (
     <>
-      <div>{location.pathname !== "/" && <Nav />}</div>
+      <div>
+        {location.pathname !== "/" && location.pathname !== "/home" && <Nav />}
+      </div>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<HomePage />} />

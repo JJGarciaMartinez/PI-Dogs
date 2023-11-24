@@ -1,4 +1,5 @@
 import React from "react";
+import "./filterStyles.css";
 
 export default function SortingOpts({ onSortChange, sortField, sortOrder }) {
   const handleSortChange = (event) => {
@@ -8,12 +9,14 @@ export default function SortingOpts({ onSortChange, sortField, sortOrder }) {
   };
 
   return (
-    <div className="sorting-opts">
-      <label htmlFor="sortField">Sort By: </label>
+    <div className="sorting-container">
+      <p>Sort By: </p>
+
       <select
         id="sortField"
         value={`${sortField}-${sortOrder}`}
         onChange={handleSortChange}
+        className="sorting-select"
       >
         <option value="name-asc">Name (A-Z)</option>
         <option value="name-desc">Name (Z-A)</option>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { originFilter } from "../../redux/actions";
+import "./filterStyles.css";
 
 export default function Origin({ onFilterChange }) {
   const [origin, setOrigin] = useState("");
@@ -14,9 +15,9 @@ export default function Origin({ onFilterChange }) {
   };
 
   return (
-    <div>
-      <p>Filter by Origin:</p>
-      <label htmlFor="">
+    <div className="origin-container">
+      <p>By Origin:</p>
+      <section className="origin-options">
         <input
           type="radio"
           name="origin"
@@ -24,9 +25,7 @@ export default function Origin({ onFilterChange }) {
           checked={origin === "api"}
           onChange={handleOriginChange}
         />
-        API
-      </label>
-      <label htmlFor="">
+        <label>API</label>
         <input
           type="radio"
           name="origin"
@@ -34,9 +33,7 @@ export default function Origin({ onFilterChange }) {
           checked={origin === "db"}
           onChange={handleOriginChange}
         />
-        DB
-      </label>
-      <label htmlFor="">
+        <label>DB</label>
         <input
           type="radio"
           name="origin"
@@ -44,8 +41,8 @@ export default function Origin({ onFilterChange }) {
           checked={origin === "all"}
           onChange={handleOriginChange}
         />
-        All
-      </label>
+        <label>All</label>
+      </section>
     </div>
   );
 }

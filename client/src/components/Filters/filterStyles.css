@@ -1,0 +1,130 @@
+:root {
+  --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  animation-timing-function: ease;
+}
+
+.sorting-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 10px;
+
+  & p {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .sorting-select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 12rem;
+    padding: 4px;
+    background: var(--arrow-icon) no-repeat right 0.3em center / 1.4em,
+      linear-gradient(to left, rgba(0, 0, 0, 0.3) 2em, rgba(0, 0, 0, 0.2) 2em);
+    color: #ffffffde;
+    border-radius: 10px;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    & option {
+      cursor: pointer;
+      background-color: #242323;
+    }
+  }
+}
+.temps-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 10px;
+
+  & p {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .temps-select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 12rem;
+    padding: 4px;
+    background: var(--arrow-icon) no-repeat right 0.3em center / 1.4em,
+      linear-gradient(to left, rgba(0, 0, 0, 0.3) 2em, rgba(0, 0, 0, 0.2) 2em);
+    color: #ffffffde;
+    border-radius: 10px;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    & option {
+      cursor: pointer;
+      background-color: #242323;
+    }
+  }
+}
+
+.origin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 10px;
+
+  & p {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .origin-options {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 5px 1rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    & label {
+      margin: 0 2rem 0 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    & input {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      appearance: none;
+      border-radius: 50%;
+      border: 2px solid #ffffffde;
+      transition: 0.1s ease;
+      cursor: pointer;
+
+      &:hover {
+        border: 5px solid rgba(0, 0, 0, 0.5);
+      }
+      &:checked {
+        background-color: rgb(255, 121, 64);
+        border: 5px solid rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}

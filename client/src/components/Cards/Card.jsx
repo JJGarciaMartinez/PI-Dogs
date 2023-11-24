@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import pawPrint from "../../assets/paw-print.svg";
-import "./cardStyles.css";
 
 const defaultDogImages = {
   15: "https://upload.wikimedia.org/wikipedia/commons/a/a0/000_American_Pit_Bull_Terrier.jpg",
