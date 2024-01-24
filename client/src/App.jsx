@@ -1,10 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
-import Landing from "./components/Landing/landing";
-import HomePage from "./components/Home/HomePage";
-import Nav from "./components/NavBar/NavBar";
-import Detail from "./components/Detail/Detail";
-import CreateDog from "./components/Form/CreateDog";
+import Landing from "./components/Landing/landing.jsx";
+import HomePage from "./components/Home/HomePage.jsx";
+import Nav from "./components/NavBar/NavBar.jsx";
+import Detail from "./components/Detail/Detail.jsx";
+import CreateDog from "./components/Form/CreateDog.jsx";
 import { useDispatch } from "react-redux";
 import { getTemperaments } from "./redux/actions";
 import { useEffect } from "react";
