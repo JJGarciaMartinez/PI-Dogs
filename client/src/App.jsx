@@ -8,6 +8,9 @@ import CreateDog from "./components/Form/CreateDog.jsx";
 import { useDispatch } from "react-redux";
 import { getTemperaments } from "./redux/actions";
 import { useEffect } from "react";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   const location = useLocation();

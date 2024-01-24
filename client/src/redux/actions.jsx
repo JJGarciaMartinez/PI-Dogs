@@ -8,7 +8,7 @@ import {
 } from "./actions-types";
 
 export const getDogs = () => {
-  const endpoint = "http://localhost:3001/dogs";
+  const endpoint = "/dogs";
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
@@ -23,7 +23,7 @@ export const getDogs = () => {
 };
 
 export const getTemperaments = () => {
-  const endpoint = "http://localhost:3001/temperaments";
+  const endpoint = "/temperaments";
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
@@ -39,7 +39,7 @@ export const getTemperaments = () => {
 };
 
 export const postDog = (dogData) => {
-  const endpoint = "http://localhost:3001/dogs";
+  const endpoint = "/dogs";
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, dogData);
