@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
-import Landing from "./components/Landing/landing.jsx";
+import Landing from "./components/Landing/Landing.jsx";
 import HomePage from "./components/Home/HomePage.jsx";
 import Nav from "./components/NavBar/NavBar.jsx";
 import Detail from "./components/Detail/Detail.jsx";

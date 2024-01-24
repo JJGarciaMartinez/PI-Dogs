@@ -5,7 +5,7 @@ import silhouette from "../../assets/silueta.svg";
 import pawPrint from "../../assets/paw-print.svg";
 import "./landingStyles.css";
 
-export default function landing() {
+export default function Landing() {
   return (
     <>
       <figure className="logo-landing">
