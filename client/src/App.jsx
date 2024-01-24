@@ -10,7 +10,7 @@ import { getTemperaments } from "./redux/actions";
 import { useEffect } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://pi-dogs-production-b916.up.railway.app";
+axios.defaults.baseURL = "https://pi-dogs-production-2f61.up.railway.app";
 
 function App() {
   const location = useLocation();
