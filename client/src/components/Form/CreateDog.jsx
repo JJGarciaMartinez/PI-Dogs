@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { postDog } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import broom from "../../assets/broom.svg";
 import pawPrint from "../../assets/paw-print.svg";
 import "./formStyles.css";
 import Footer from "../Footer/Footer";
+import { validateName, validateMinMax, isValidURL } from "./validations";
 
 export default function CreateDog() {
   const dispatch = useDispatch();
@@ -31,41 +32,45 @@ export default function CreateDog() {
   const [minWeightErr, setMinWeightErr] = useState(false);
   const [maxWeightErr, setMaxWeightErr] = useState(false);
 
-  const validateName = (name) => {
-    if (/\d/.test(name)) {
-      return "Name cannot contain numbers";
-    }
-    return "";
-  };
+  const [errors, setErrors] = useState({});
 
-  const validateMinMax = (min, max) => {
-    if (parseInt(min) > parseInt(max)) {
-      return "Min value cannot be greater than max value";
-    }
-    return "";
-  };
+  useEffect(() => {
+    const formData = {
+      name: form.name,
+      minHeight: form.minHeight,
+      maxHeight: form.maxHeight,
+      minWeight: form.minWeight,
+      maxWeight: form.maxWeight,
+      lifeSpan: form.lifeSpan,
+    };
 
-  const validateForm = (fromData) => {
-    const { name, minHeight, maxHeight, minWeight, maxWeight } = fromData;
-    const errors = {};
+    const newErrors = {
+      name: validateName(formData.name),
+      minHeight: validateMinMax(
+        formData.minHeight,
+        formData.maxHeight,
+        "Height"
+      ),
+      maxHeight: validateMinMax(
+        formData.minHeight,
+        formData.maxHeight,
+        "Height"
+      ),
+      minWeight: validateMinMax(
+        formData.minWeight,
+        formData.maxWeight,
+        "Weight"
+      ),
+      maxWeight: validateMinMax(
+        formData.minWeight,
+        formData.maxWeight,
+        "Weight"
+      ),
+      lifeSpan: isNaN(formData.lifeSpan) ? "Life Span must be a number" : "",
+    };
 
-    const nameError = validateName(name);
-    if (nameError) {
-      errors.name = nameError;
-    }
-
-    const heightError = validateMinMax(minHeight, maxHeight);
-    if (heightError) {
-      errors.minHeight = heightError;
-    }
-
-    const weightError = validateMinMax(minWeight, maxWeight);
-    if (weightError) {
-      errors.minWeight = weightError;
-    }
-
-    return errors;
-  };
+    setErrors(newErrors);
+  }, [form]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -85,6 +90,12 @@ export default function CreateDog() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if there are any errors before submitting the form
+    if (Object.values(errors).some((error) => error !== "")) {
+      setError("Please fix the errors in the form");
+      return;
+    }
 
     const nombre = form.name.trim();
 
@@ -172,8 +183,11 @@ export default function CreateDog() {
             />
             <p>Name</p>
             <span>
-              {error && form.name === "" && <p>{error}* </p>}
-              {error && form.name.length > 20 && <p>{error}* </p>}
+              {errors.name && <p>{errors.name}</p>}
+              {error && form.name === "" && <p>{error}*</p>}
+              {form.name.length > 20 && (
+                <p>Name must be less than 20 characters</p>
+              )}
             </span>
           </label>
           {/*  IMAGE  */}
@@ -188,7 +202,12 @@ export default function CreateDog() {
             <p>
               Image <li>(URL)</li>
             </p>
-            <span>{error && form.image === "" && <p>{error}* </p>}</span>
+            <span>
+              {errors.image && <p>{errors.image}</p>}
+              {form.image.trim() && !isValidURL(form.image) && (
+                <p>Invalid URL</p>
+              )}
+            </span>
           </label>
 
           {/*  HEIGHT  */}
@@ -202,8 +221,12 @@ export default function CreateDog() {
               placeholder="Min Height"
             />
             <p>Min Height</p>
-            <span>{minHeightErr && <p>{minHeightErr}*</p>}</span>
+            <span>
+              {errors.minHeight && <p>{errors.minHeight}</p>}
+              {minHeightErr && <p>{minHeightErr}*</p>}
+            </span>
           </label>
+
           <label className="maxHeight">
             <input
               type="number"
@@ -214,7 +237,10 @@ export default function CreateDog() {
               placeholder="Max Height"
             />
             <p>Max Height</p>
-            <span>{maxHeightErr && <p>{maxHeightErr}*</p>}</span>
+            <span>
+              {errors.maxHeight && <p>{errors.maxHeight}</p>}
+              {maxHeightErr && <p>{maxHeightErr}*</p>}
+            </span>
           </label>
 
           {/*  WEIGHT  */}
@@ -228,7 +254,10 @@ export default function CreateDog() {
               placeholder="Min Weight"
             />
             <p>Min Weight</p>
-            <span>{minWeightErr && <p>{minWeightErr}*</p>}</span>
+            <span>
+              {errors.minWeight && <p>{errors.minWeight}</p>}
+              {minWeightErr && <p>{minWeightErr}*</p>}
+            </span>
           </label>
           <label className="maxWeight">
             <input
@@ -240,7 +269,10 @@ export default function CreateDog() {
               placeholder="Max Weight"
             />
             <p>Max Weight</p>
-            <span>{maxWeightErr && <p>{maxWeightErr}*</p>}</span>
+            <span>
+              {errors.maxWeight && <p>{errors.maxWeight}</p>}
+              {maxWeightErr && <p>{maxWeightErr}*</p>}
+            </span>
           </label>
 
           <section className="lifeSpan">
@@ -255,7 +287,7 @@ export default function CreateDog() {
                 placeholder="Life Span"
               />
               <p>Life Span</p>
-              <span>{error && isNaN(form.lifeSpan) && <p>{error}* </p>}</span>
+              <span>{errors.lifeSpan && <p>{errors.lifeSpan}</p>}</span>
             </label>
           </section>
 

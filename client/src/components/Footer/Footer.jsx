@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import gitHub from "../../assets/github.svg";
 import linkedin from "../../assets/linkedin.svg";
@@ -12,16 +13,16 @@ export default function Footer() {
     <footer>
       <div className="info-container">
         <section className="social-container">
-          <a href="https://github.com/JJGarciaMartinez/PI-Dogs">
+          <a href="https://github.com/JJGarciaMartinez/PI-Dogs" target="_blank">
             <img src={gitHub} alt="" />
           </a>
-          <a href="www.linkedin.com/in/juanjgarcia23">
+          <a href="https://www.linkedin.com/in/juanjgarcia23" target="_blank">
             <img src={linkedin} alt="" />
           </a>
-          <a href="https://api.thedogapi.com/v1/">
+          <a href="https://thedogapi.com" target="_blank">
             <img src={dog} alt="" />
           </a>
-          <a href="https://www.soyhenry.com">
+          <a href="https://www.soyhenry.com" target="_blank">
             <img src={soyHenry} alt="" className="logo-henry" />
           </a>
         </section>
@@ -31,7 +32,9 @@ export default function Footer() {
         <section className="info">
           <p>
             Template by
-            <a href="https://www.soyhenry.com">Soy Henry</a>
+            <a href="https://www.soyhenry.com" target="_blank">
+              Soy Henry
+            </a>
           </p>
           <p>
             <img src={code} alt="" />{" "}

@@ -105,7 +105,12 @@
     width: 30rem;
     height: 25rem;
     border-radius: 10px;
-    background-color: #f3f3f3;
+
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
 
     color: rgb(21, 21, 31);
     transition: 0.3s ease-in-out;
@@ -120,6 +125,7 @@
         object-fit: cover;
         width: 100%;
         height: 100%;
+        object-position: top;
         transition: transform 0.3s ease;
       }
     }
@@ -210,7 +216,7 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.3s;
     z-index: 2;
   }
 

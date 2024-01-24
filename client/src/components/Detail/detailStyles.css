@@ -99,6 +99,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: top;
         transition: 0.3s;
       }
     }
@@ -138,7 +139,7 @@
           margin-bottom: 1rem;
         }
 
-        & span {
+        .temps-container {
           margin: 0 0 3rem;
           width: 70%;
           display: flex;
