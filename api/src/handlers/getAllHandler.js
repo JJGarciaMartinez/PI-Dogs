@@ -1,4 +1,4 @@
-const { getAllByApi, getAllByDb } = require("../controllers/getAllCtrl");
+const { getAllByApi, getAllByDb } = require("../controllers/getAllCtrl.js");
 
 const getDogsHandler = async (req, res) => {
   try {

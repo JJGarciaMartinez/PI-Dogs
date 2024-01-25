@@ -1,10 +1,10 @@
 const { Router } = require("express");
 //* Importar todos los routers;
-const { getDogsHandler } = require("../handlers/getAllHandler");
-const { searchHandler } = require("../handlers/searchHandler");
-const { detailsHandler } = require("../handlers/detailsHandler");
-const { createDogHandler } = require("../handlers/createHandler");
-const { getTempsHandler } = require("../handlers/tempsHandler");
+const { getDogsHandler } = require("../handlers/getAllHandler.js");
+const { searchHandler } = require("../handlers/searchHandler.js");
+const { detailsHandler } = require("../handlers/detailsHandler.js");
+const { createDogHandler } = require("../handlers/createHandler.js");
+const { getTempsHandler } = require("../handlers/tempsHandler.js");
 
 const router = Router();
 

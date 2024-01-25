@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Temperament } = require("../db");
+const { Temperament } = require("../db.js");
 const URL_API = "https://api.thedogapi.com/v1";
 
 const getTempCtrl = async () => {

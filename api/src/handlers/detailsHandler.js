@@ -1,4 +1,4 @@
-const { getDetails } = require("../controllers/getDetailsCtrl");
+const { getDetails } = require("../controllers/getDetailsCtrl.js");
 
 const detailsHandler = async (req, res) => {
   const { id } = req.params;

@@ -1,4 +1,4 @@
-const getTempCtrl = require("../controllers/getTempCtrl");
+const getTempCtrl = require("../controllers/getTempCtrl.js");
 
 const getTempsHandler = async (req, res) => {
   try {
