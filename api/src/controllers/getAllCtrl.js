@@ -5,13 +5,9 @@ const URL_IMG = "https://cdn2.thedogapi.com";
 
 const getAllByApi = async () => {
   try {
-    const url = `${URL_API}/breeds`;
+    const url = `${URL_API}/breeds?api_key=${API_KEY}`;
 
-    const { data } = await axios.get(url, {
-      headers: {
-        "x-api-key": API_KEY,
-      },
-    });
+    const { data } = await axios.get(url);
 
     const dogs = data.map((breed) => {
       const idImg = breed.reference_image_id;
